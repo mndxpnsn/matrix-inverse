@@ -94,7 +94,7 @@ double co_factor(double ** mat, int n, int i, int j) {
     return fac;
 }
 
-void adj(double ** mat, int n, double ** adj_mat) {
+void adjoint_mat(double ** mat, int n, double ** adj_mat) {
 
     for(int i = 0; i < n; ++i) {
         for(int j = 0; j < n; ++j) {
@@ -107,7 +107,7 @@ void mat_inverse(double ** mat, int n, double ** mat_inv) {
 
     double ** adj_mat = mat2D(n);
 
-    adj(mat, n, adj_mat);
+    adjoint_mat(mat, n, adj_mat);
 
     double det = determinant(mat, n);
 
@@ -151,50 +151,50 @@ int main(int argc, char * argv[]) {
     // Size of matrix
     int n = 4;
 
-    // Allocate space for matrices
-    double ** A = mat2D(n);
-    double ** A_inv = mat2D(n);
+    // matllocate space for matrices
+    double ** mat = mat2D(n);
+    double ** mat_inv = mat2D(n);
     double ** mat_prod = mat2D(n);
 
-    // Populate matrix A with some data
-    A[0][0] = 1;
-    A[0][1] = 2;
-    A[0][2] = -3;
-    A[0][3] = 4;
+    // Populate matrix mat with some data
+    mat[0][0] = 1;
+    mat[0][1] = 2;
+    mat[0][2] = -3;
+    mat[0][3] = 4;
 
-    A[1][0] = -4;
-    A[1][1] = 2;
-    A[1][2] = 1;
-    A[1][3] = 3;
+    mat[1][0] = -4;
+    mat[1][1] = 2;
+    mat[1][2] = 1;
+    mat[1][3] = 3;
 
-    A[2][0] = 3;
-    A[2][1] = 0;
-    A[2][2] = 0;
-    A[2][3] = -3;
+    mat[2][0] = 3;
+    mat[2][1] = 0;
+    mat[2][2] = 0;
+    mat[2][3] = -3;
 
-    A[3][0] = 2;
-    A[3][1] = 0;
-    A[3][2] = -2;
-    A[3][3] = 3;
+    mat[3][0] = 2;
+    mat[3][1] = 0;
+    mat[3][2] = -2;
+    mat[3][3] = 3;
 
-    // Compute the inverse of A
-    mat_inverse(A, n, A_inv);
+    // Compute the inverse of mat
+    mat_inverse(mat, n, mat_inv);
 
-    // Compute the product A and its inverse A_inv
-    mat_mult_sq(A, A_inv, n,  mat_prod);
+    // Compute the product mat and its inverse mat_inv
+    mat_mult_sq(mat, mat_inv, n,  mat_prod);
 
-    // Print A
-    print_mat(A, n);
+    // Print mat
+    print_mat(mat, n);
 
-    // Print the inverse of A
-    print_mat(A_inv, n);
+    // Print the inverse of mat
+    print_mat(mat_inv, n);
 
-    // Print product of A with its inverse
+    // Print product of mat with its inverse
     print_mat(mat_prod, n);
 
     // Free allocated space
-    free_mat2D(A, n);
-    free_mat2D(A_inv, n);
+    free_mat2D(mat, n);
+    free_mat2D(mat_inv, n);
     free_mat2D(mat_prod, n);
 
     return 0;
