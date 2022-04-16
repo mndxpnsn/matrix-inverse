@@ -111,10 +111,19 @@ void mat_inverse(double ** mat, int n, double ** mat_inv) {
 
     double det = determinant(mat, n);
 
-    for(int i = 0; i < n; ++i) {
-        for(int j = 0; j < n; ++j) {
-            mat_inv[j][i] = 1.0 / det * adj_mat[i][j];
+    // Check if matrix is singular
+    if(det == 0)
+        printf("Matrix is singular\n");
+    
+    // Matrix is nonsingular
+    if(det != 0) {
+        
+        for(int i = 0; i < n; ++i) {
+            for(int j = 0; j < n; ++j) {
+                mat_inv[j][i] = 1.0 / det * adj_mat[i][j];
+            }
         }
+        
     }
 
     free_mat2D(adj_mat, n);
