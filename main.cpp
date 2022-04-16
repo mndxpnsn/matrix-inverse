@@ -155,6 +155,25 @@ void print_mat(double ** mat, int n) {
     printf("\n");
 }
 
+double rand_num(double min, double max) {
+    
+    double val = (double) rand() / (RAND_MAX + 1.0);
+    
+    return val * (max - min) - (max - min) / 2.0;
+}
+
+void init_mat(int n, double ** mat) {
+    
+    double max_range = 50;
+    double min_range = -50;
+    
+    for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < n; ++j) {
+            mat[i][j] = rand_num(min_range, max_range);
+        }
+    }
+}
+
 int main(int argc, char * argv[]) {
 
     // Size of matrix
@@ -166,25 +185,7 @@ int main(int argc, char * argv[]) {
     double ** mat_prod = mat2D(n);
 
     // Populate matrix mat with some data
-    mat[0][0] = 1;
-    mat[0][1] = 2;
-    mat[0][2] = -3;
-    mat[0][3] = 4;
-
-    mat[1][0] = -4;
-    mat[1][1] = 2;
-    mat[1][2] = 1;
-    mat[1][3] = 3;
-
-    mat[2][0] = 3;
-    mat[2][1] = 0;
-    mat[2][2] = 0;
-    mat[2][3] = -3;
-
-    mat[3][0] = 2;
-    mat[3][1] = 0;
-    mat[3][2] = -2;
-    mat[3][3] = 3;
+    init_mat(n, mat);
 
     // Compute the inverse of mat
     mat_inverse(mat, n, mat_inv);
