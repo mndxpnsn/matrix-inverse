@@ -160,7 +160,7 @@ int main(int argc, char * argv[]) {
     // Size of matrix
     int n = 4;
 
-    // matllocate space for matrices
+    // Allocate space for matrices
     double ** mat = mat2D(n);
     double ** mat_inv = mat2D(n);
     double ** mat_prod = mat2D(n);
@@ -189,7 +189,7 @@ int main(int argc, char * argv[]) {
     // Compute the inverse of mat
     mat_inverse(mat, n, mat_inv);
 
-    // Compute the product mat and its inverse mat_inv
+    // Compute the product of mat and its inverse mat_inv
     mat_mult_sq(mat, mat_inv, n,  mat_prod);
 
     // Print mat
